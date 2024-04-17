@@ -10,7 +10,7 @@ const TaskFilter = () => {
         <button>Active</button>
       </li>
       <li>
-        <button>Completed</button>
+        <button>Completed </button>
       </li>
     </ul>
   );
