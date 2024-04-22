@@ -4,7 +4,6 @@ import NewTaskForm from './new-task-form';
 import TaskList from './task-list';
 import Footer from './footer';
 
-
 export default class App extends Component {
   state = {
     todoData: [
@@ -12,7 +11,7 @@ export default class App extends Component {
         id: 1,
         className: 'completed',
         textDescription: 'Completed task',
-        textCreated: 'created 18 seconds ago',
+        textCreated: 'created 17 seconds ago',
       },
       {
         id: 2,
@@ -28,11 +27,23 @@ export default class App extends Component {
       },
     ],
   };
+
+  deleteItem = (id) => {
+    this.setState(({ todoData }) => {
+      const idx = todoData.findIndex((el) => el.id === id);
+      const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)];
+
+      return {
+        todoData: newArray,
+      };
+    });
+  };
+
   render() {
     return (
       <div>
         <NewTaskForm />
-        <TaskList todoData={this.state.todoData} />
+        <TaskList todoData={this.state.todoData} onDeleted={this.deleteItem} />
         <Footer />
       </div>
     );
